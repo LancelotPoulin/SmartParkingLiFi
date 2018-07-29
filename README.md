@@ -12,7 +12,7 @@ Somehow it's like a bidirectionnal light data transmission between a smartphone 
 
 I think you should create new project and copy my files to avoid bugs of visual studio and xamarin.
 To use the code, you need to install some NuGet packages corresponding to unfindables "using" directives like "LusoVU.XamarinUsbSerialForAndroid.0.2.3" or "Plugin.CurrentActivity.1.0.1" etc...
-The application is connected to a webservice to log users, you can just delete this page.
+The application is connected to a webservice to log users, you can just delete this page and fix side effects or use it in a WAMP server.
 
 Contact me at poulinponnelle.lancelot@outlook.com if you have any questions.
 
