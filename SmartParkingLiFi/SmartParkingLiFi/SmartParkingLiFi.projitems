@@ -1,0 +1,58 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <MSBuildAllProjects>$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
+    <HasSharedItems>true</HasSharedItems>
+    <SharedGUID>4b811900-004a-44d3-960c-c7ef39583329</SharedGUID>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration">
+    <Import_RootNamespace>SmartParkingLiFi</Import_RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Graphics.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)CustomControls\ButtonL.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)CustomControls\ButtonTransparent.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)CustomControls\EntryL.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)CustomControls\RoundedCornerView.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)CustomControls\VideoL.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Data\Model\Client.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Data\Model\Place.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Data\Model\Reservation.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Data\Model\ReservationCell.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Data\Model\ReservationGroupCell.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Data\Settings.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)HttpRequests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)LogInPage.xaml.cs">
+      <DependentUpon>LogInPage.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)TabbedMainPage.xaml.cs">
+      <DependentUpon>TabbedMainPage.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)App.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)LogInPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)TabbedMainPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="$(MSBuildThisFileDirectory)CustomControls\" />
+  </ItemGroup>
+</Project>

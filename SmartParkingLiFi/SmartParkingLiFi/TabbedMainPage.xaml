@@ -1,0 +1,240 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<BB:BottomBarPage xmlns="http://xamarin.com/schemas/2014/forms"
+            xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+            xmlns:SPL="clr-namespace:SmartParkingLiFi"
+            xmlns:CC="clr-namespace:SmartParkingLiFi.CustomControls"
+            xmlns:BB="clr-namespace:BottomBar.XamarinForms;assembly=BottomBar.XamarinForms"
+            xmlns:MC="clr-namespace:Microcharts.Forms;assembly=Microcharts.Forms"
+            xmlns:System="clr-namespace:System;assembly=mscorlib"
+            x:Class="SmartParkingLiFi.TabbedMainPage"
+            NavigationPage.HasNavigationBar="False" BarTheme="Light" BarTextColor="{Binding Source={x:Static SPL:Graphics.MainColor}}" >
+
+
+
+    <NavigationPage x:Name="ReservationNavPage" Title="Réservation" Icon="Reservation.png" BarBackgroundColor="White" BarTextColor="{Binding Source={x:Static SPL:Graphics.MainColor}}" >
+        <x:Arguments>
+            <ContentPage x:Name="ReservationPage" Title="Réservation" BackgroundColor="White" Appearing="ReservationPage_Appearing" > 
+                <StackLayout>
+
+                    <CC:RoundedCornerView BorderColor="{Binding Source={x:Static SPL:Graphics.MainColor}}" BorderWidth="1" Padding="1" BackgroundColor="Transparent" HorizontalOptions="FillAndExpand" RoundedCornerRadius="1">
+                        <BoxView HeightRequest="0" Margin="0" />
+                    </CC:RoundedCornerView>
+
+                    <CC:RoundedCornerView BorderColor="{Binding Source={x:Static SPL:Graphics.MainColor}}" BorderWidth="6"  BackgroundColor="Transparent" Margin="10, 12.5, 10, 0" VerticalOptions="FillAndExpand" RoundedCornerRadius="15">
+                        <StackLayout Orientation="Vertical" HeightRequest="340" BackgroundColor="{Binding Source={x:Static SPL:Graphics.MainColor}}">
+                            
+                            <Label Text="Réserver une place" FontSize="Medium" VerticalOptions="Center" TextColor="White" Margin="7.5, 2.5, 2.5, 0" />
+                            
+                            <StackLayout Orientation="Horizontal" Padding="15, 0, 15, 0" >
+                                <Label Text="Début" VerticalOptions="Center" TextColor="White" />
+                                <DatePicker x:Name="BeginDatePicker" MinimumDate="{x:Static System:DateTime.Now}" Format="ddd d MMM" HorizontalOptions="EndAndExpand" Margin="90, 0, 0, 0" VerticalOptions="Center" TextColor="White" WidthRequest="110" />
+                                <TimePicker x:Name="BeginTimePicker" Format="HH:mm" HorizontalOptions="EndAndExpand" VerticalOptions="Center" TextColor="White" />
+                            </StackLayout>
+
+                            <StackLayout Orientation="Horizontal" Padding="15, 0, 15, 0" >
+                                <Label Text="Fin" VerticalOptions="Center" TextColor="White" />
+                                <DatePicker x:Name="EndDatePicker" MinimumDate="{x:Static System:DateTime.Now}" Format="ddd d MMM" HorizontalOptions="EndAndExpand" Margin="107.5, 0, 0, 0" VerticalOptions="Center" TextColor="White" WidthRequest="110"  />
+                                <TimePicker x:Name="EndTimePicker" Format="HH:mm" HorizontalOptions="EndAndExpand" VerticalOptions="Center" TextColor="White" />
+                            </StackLayout>
+
+                            <Label XAlign="Start" Text="Notre système accepte une avance ou un retard de 15 minutes sur les heures indiquées. Réservation de minimum 30 minutes." VerticalOptions="Center" TextColor="White" FontSize="11" Margin="15, 0, 15, 0" />
+
+                            <StackLayout Orientation="Horizontal" BackgroundColor="{Binding Source={x:Static SPL:Graphics.MainColor}}" HeightRequest="50" HorizontalOptions="FillAndExpand" >
+                                <CC:RoundedCornerView BorderColor="White" BorderWidth="6" Margin="15, 5, 7.5, 5"   BackgroundColor="Transparent" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" RoundedCornerRadius="10">
+                                    <Label Text="Reference" TextColor="White"  VerticalOptions="Center" Margin="20, 0, 0, 0" />
+                                    <Label x:Name="Reference" Text="-" TextColor="White" HorizontalOptions="EndAndExpand" VerticalOptions="Center" Margin="0, 0, 20, 0" />
+                                </CC:RoundedCornerView>
+                                <CC:RoundedCornerView BorderColor="White" BorderWidth="6" Margin="7.5, 5, 15, 5"  BackgroundColor="Transparent" VerticalOptions="FillAndExpand" Padding="0" HorizontalOptions="FillAndExpand" RoundedCornerRadius="10">
+                                    <CC:ButtonTransparent x:Name="ValidateDeleteReservation" Text="Valider" TextColor="White" Clicked="ValidateDeleteReservationButton_ClickedAsync" Margin="0" HorizontalOptions="Center" />
+                                </CC:RoundedCornerView>
+                            </StackLayout>
+                            
+                        </StackLayout>
+                    </CC:RoundedCornerView>
+
+
+                    <CC:RoundedCornerView BorderColor="{Binding Source={x:Static SPL:Graphics.MainColor}}" BorderWidth="1" BackgroundColor="Transparent" Margin="0, 15, 0, 0" VerticalOptions="FillAndExpand" RoundedCornerRadius="0">
+
+                        <ListView x:Name="ReservationHistoryListView" HasUnevenRows="True" RowHeight="50" SeparatorVisibility="None" BackgroundColor="White" VerticalOptions="FillAndExpand" IsGroupingEnabled="True" ItemSelected="HistoryListView_ItemSelected" >
+
+                            <ListView.GroupHeaderTemplate Height="20">
+                                <DataTemplate>
+                                    <ViewCell Height="20" >
+                                        <CC:RoundedCornerView BorderColor="{Binding Source={x:Static SPL:Graphics.MainColor}}" BorderWidth="1"  BackgroundColor="Transparent" Margin="0, 0, 0, 0" VerticalOptions="FillAndExpand" RoundedCornerRadius="0">
+                                            <Grid BackgroundColor="{Binding Source={x:Static SPL:Graphics.MainColor}}" RowSpacing="0" ColumnSpacing="0"  >
+
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="30" />
+                                                </Grid.RowDefinitions>
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="*" />
+                                                </Grid.ColumnDefinitions>
+
+                                                <Label Grid.Column="0" Grid.Row="0" Text="{Binding Month}" HorizontalOptions="Center" FontSize="14" Margin="0, 0, 0, 0" TextColor="White" />
+
+                                            </Grid>
+                                        </CC:RoundedCornerView>
+                                    </ViewCell>
+                                </DataTemplate>
+                            </ListView.GroupHeaderTemplate>
+
+                            <ListView.ItemTemplate Height="50">
+                                <DataTemplate>
+                                    <ViewCell>
+                                        <CC:RoundedCornerView BorderColor="{Binding Source={x:Static SPL:Graphics.MainColor}}" BorderWidth="1" BackgroundColor="Transparent" Margin="0, 0, 0, 0" VerticalOptions="FillAndExpand" RoundedCornerRadius="0" >
+                                            <Grid BackgroundColor="White" RowSpacing="0" ColumnSpacing="0" >
+
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="25" />
+                                                    <RowDefinition Height="25" />
+                                                </Grid.RowDefinitions>
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="10" />
+                                                    <ColumnDefinition Width="*" />
+                                                    <ColumnDefinition Width="70" />
+                                                </Grid.ColumnDefinitions>
+
+                                                <Label Grid.Column="2" Grid.Row="0" Grid.RowSpan="2" VerticalOptions="Center" HorizontalOptions="Center" Text="..." Margin="0, 0, 0, 5" />
+                                                
+                                                <Label Grid.Column="1" Grid.Row="0" Text="{Binding Reference}" FontSize="16" TextColor="Black" VerticalOptions="End" Margin="2.5, 0, 2.5, 0" />
+                                                <Label Grid.Column="1" Grid.Row="0" Text="{Binding Duration}" FontSize="16" TextColor="Black" VerticalOptions="End" HorizontalOptions="End" Margin="2.5, 0, 2.5, 0" />
+                                                <Label Grid.Column="1" Grid.Row="1" Text="{Binding Date}" FontSize="16" TextColor="DarkGray" VerticalOptions="Start" HorizontalOptions="Center" Margin="2.5, 0, 2.5, 0" />
+
+                                            </Grid>
+                                        </CC:RoundedCornerView>
+                                    </ViewCell>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </ListView>
+                    </CC:RoundedCornerView>
+
+                </StackLayout>
+            </ContentPage>
+        </x:Arguments>
+    </NavigationPage>
+
+
+
+    <NavigationPage x:Name="LiFiNavPage" Title="Accès Li-Fi" Icon="LiFiPass.png" BarBackgroundColor="White" BarTextColor="{Binding Source={x:Static SPL:Graphics.MainColor}}" >
+        <x:Arguments>
+            <ContentPage x:Name="LiFiPage" Title="Accès Li-Fi" BackgroundColor="White" Appearing="LiFiPage_Appearing" >
+                <StackLayout>
+
+                    <CC:RoundedCornerView BorderColor="{Binding Source={x:Static SPL:Graphics.MainColor}}" BorderWidth="1" Padding="1" BackgroundColor="Transparent" HorizontalOptions="FillAndExpand" RoundedCornerRadius="1">
+                        <BoxView HeightRequest="0" Margin="0" />
+                    </CC:RoundedCornerView>
+
+                    <CC:RoundedCornerView BorderColor="{Binding Source={x:Static SPL:Graphics.MainColor}}" BorderWidth="2"  BackgroundColor="Transparent" VerticalOptions="FillAndExpand" Margin="5, 0, 5, 0" RoundedCornerRadius="10">
+                        <Label x:Name="ReceiverStatus" Text="Prêt" FontSize="13" Margin="70" TextColor="Black" VerticalOptions="Center" HorizontalOptions="Center" />
+                        <Image Source="Info.png" HorizontalOptions="Start" Margin="5" />
+                    </CC:RoundedCornerView>
+
+                    <CC:RoundedCornerView BorderColor="{Binding Source={x:Static SPL:Graphics.MainColor}}" BorderWidth="2"  BackgroundColor="Transparent" VerticalOptions="FillAndExpand" Margin="15, 40, 15, 0" RoundedCornerRadius="10">
+                        <Label x:Name="RemainingTime" Text="Pas de réservation en cours" FontSize="16" TextColor="Black" VerticalOptions="Center" HorizontalOptions="Center" />
+                        <Image Source="Time.png" HorizontalOptions="Start" Margin="5" />
+                    </CC:RoundedCornerView>
+
+                    <CC:RoundedCornerView BorderColor="{Binding Source={x:Static SPL:Graphics.MainColor}}" BorderWidth="6"  BackgroundColor="Transparent" Margin="10, 65, 10, 10" VerticalOptions="FillAndExpand" RoundedCornerRadius="15">
+                        <StackLayout Orientation="Vertical" HeightRequest="400" BackgroundColor="{Binding Source={x:Static SPL:Graphics.MainColor}}">
+
+                            <StackLayout Orientation="Horizontal" Padding="15, 5, 15, 5" >
+                                <Label Text="Référence" VerticalOptions="Center" TextColor="White"  />
+                                <Label x:Name="ReferenceLabel" HorizontalOptions="EndAndExpand" VerticalOptions="Center" Text="-" HorizontalTextAlignment="End" Margin="0, 0, 5, 0" TextColor="White" BackgroundColor="Transparent"/>
+                            </StackLayout>
+
+                            <StackLayout Orientation="Horizontal" Padding="15, 5, 15, 5" >
+                                <Label Text="Étage" VerticalOptions="Center" TextColor="White"  />
+                                <Label x:Name="FloorLabel" HorizontalOptions="EndAndExpand" VerticalOptions="Center" Text="-" HorizontalTextAlignment="End" Margin="0, 0, 5, 0" TextColor="White" BackgroundColor="Transparent"/>
+                            </StackLayout>
+
+                            <StackLayout Orientation="Horizontal" Padding="15, 5, 15, 5" >
+                                <Label Text="Allée" VerticalOptions="Center" TextColor="White"  />
+                                <Label x:Name="LaneLabel" HorizontalOptions="EndAndExpand" VerticalOptions="Center" Text="-" HorizontalTextAlignment="End" Margin="0, 0, 5, 0" TextColor="White" BackgroundColor="Transparent"/>
+                            </StackLayout>
+
+                            <StackLayout Orientation="Horizontal" Padding="15, 5, 15, 5" >
+                                <Label Text="Place" VerticalOptions="Center" TextColor="White"  />
+                                <Label x:Name="PlaceLabel" HorizontalOptions="EndAndExpand" VerticalOptions="Center" Text="-" HorizontalTextAlignment="End" Margin="0, 0, 5, 0" TextColor="White" BackgroundColor="Transparent"/>
+                            </StackLayout>
+
+                            <StackLayout Orientation="Horizontal" Padding="15, 0, 15, 0" >
+                                <Label Text="Place handicapé" VerticalOptions="Center" TextColor="White" />
+                                <Switch x:Name="DisabledSwitchCell" VerticalOptions="Center" HorizontalOptions="EndAndExpand" />
+                            </StackLayout>
+
+                            <Label XAlign="Start" Text="Vous devez vous munir d'un justificatif pour la réservation d'une place handicapé." VerticalOptions="Center" TextColor="White" FontSize="11" Margin="15, 0, 15, 0" />
+
+                            <StackLayout Orientation="Horizontal" BackgroundColor="{Binding Source={x:Static SPL:Graphics.MainColor}}" HeightRequest="50" HorizontalOptions="FillAndExpand" >
+                                <CC:RoundedCornerView BorderColor="White" BorderWidth="6" Margin="15, 5, 15, 5"  BackgroundColor="Transparent" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" RoundedCornerRadius="10">
+                                    <CC:ButtonTransparent x:Name="AccessButton" Text="Accès sans réservation" TextColor="White" Clicked="AccessButton_Clicked" HorizontalOptions="CenterAndExpand" />
+                                </CC:RoundedCornerView>
+                            </StackLayout>
+
+                        </StackLayout>
+                    </CC:RoundedCornerView>
+
+                    <CC:RoundedCornerView BorderColor="{Binding Source={x:Static SPL:Graphics.MainColor}}" BorderWidth="1"  BackgroundColor="Transparent" HorizontalOptions="FillAndExpand" RoundedCornerRadius="1">
+                    </CC:RoundedCornerView>
+                    
+                </StackLayout>
+            </ContentPage>
+        </x:Arguments>
+    </NavigationPage>
+
+
+
+    <NavigationPage x:Name="ProfilNavPage" Title="Profil" Icon="Profil.png" BarBackgroundColor="White" BarTextColor="{Binding Source={x:Static SPL:Graphics.MainColor}}" >
+        <x:Arguments>
+            <ContentPage x:Name="ProfilPage" Title="Profil" Appearing="ProfilPage_Appearing" BackgroundColor="#FFFFFF" >
+
+                    <StackLayout>
+
+                    <CC:RoundedCornerView BorderColor="{Binding Source={x:Static SPL:Graphics.MainColor}}" BorderWidth="1" Padding="1" BackgroundColor="Transparent" HorizontalOptions="FillAndExpand" RoundedCornerRadius="1">
+                        <BoxView HeightRequest="0" Margin="0" />
+                    </CC:RoundedCornerView>
+
+                    <CC:RoundedCornerView BorderColor="{Binding Source={x:Static SPL:Graphics.MainColor}}" BorderWidth="6"  BackgroundColor="Transparent" Margin="10, 12.5, 10, 20" VerticalOptions="FillAndExpand" RoundedCornerRadius="15">
+                            <StackLayout Orientation="Vertical"  HeightRequest="200" BackgroundColor="{Binding Source={x:Static SPL:Graphics.MainColor}}">
+                                <Label Text="Nombre de réservation" VerticalOptions="Center" TextColor="White" Margin="7.5, 2.5, 2.5, 0" />
+                                <MC:ChartView x:Name="HistoryChartView" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" />
+                        </StackLayout>
+                        </CC:RoundedCornerView>
+
+                    <CC:RoundedCornerView BorderColor="{Binding Source={x:Static SPL:Graphics.MainColor}}" BorderWidth="1" BackgroundColor="Transparent" Margin="0, 0, 0, 0" VerticalOptions="FillAndExpand" RoundedCornerRadius="0">
+                        <TableView x:Name="ProfilTableView" Intent="Settings" BackgroundColor="#FFFFFF" >
+                            <TableRoot>
+
+                                <TableSection>
+                                    <TextCell x:Name="NameSurnameTextCell" Text="Nom et prénom" DetailColor="Black" TextColor="{Binding Source={x:Static SPL:Graphics.MainColor}}" />
+                                    <TextCell x:Name="AddressTextCell" Text="Adresse" DetailColor="Black" TextColor="{Binding Source={x:Static SPL:Graphics.MainColor}}" />
+                                    <TextCell x:Name="CityPCTextCell" Text="Ville et CP" DetailColor="Black" TextColor="{Binding Source={x:Static SPL:Graphics.MainColor}}" />
+                                    <TextCell x:Name="PhoneNumberTextCell" Text="Téléphone" DetailColor="Black" TextColor="{Binding Source={x:Static SPL:Graphics.MainColor}}" />
+                                    <TextCell x:Name="EmailTextCell"  Text="Email" DetailColor="Black" TextColor="{Binding Source={x:Static SPL:Graphics.MainColor}}" />
+                                    <TextCell x:Name="PasswordTextCell"  Text="Mot de passe" DetailColor="Black" TextColor="{Binding Source={x:Static SPL:Graphics.MainColor}}" />
+                                    <ViewCell>
+                                        <StackLayout Orientation="Horizontal" Padding="15, 5, 15, 5" >
+                                            <Label Text="Notifications" VerticalOptions="Center" TextColor="{Binding Source={x:Static SPL:Graphics.MainColor}}" />
+                                            <Switch x:Name="NotifificationSwitchCell" VerticalOptions="Center" HorizontalOptions="EndAndExpand" />
+                                        </StackLayout>
+                                    </ViewCell>
+                                    <ViewCell>
+                                        <StackLayout Orientation="Horizontal" >
+                                            <CC:ButtonTransparent Text="Conditions" TextColor="{Binding Source={x:Static SPL:Graphics.MainColor}}" HorizontalOptions="FillAndExpand" Clicked="ConditionsButton_Clicked" />
+                                            <CC:ButtonTransparent Text="Se déconnecter" TextColor="{Binding Source={x:Static SPL:Graphics.MainColor}}" HorizontalOptions="FillAndExpand" Clicked="DisconnectButton_ClickedAsync" />
+                                        </StackLayout>
+                                    </ViewCell>
+                                </TableSection>
+
+                            </TableRoot>
+                        </TableView>
+
+                    </CC:RoundedCornerView>
+                        
+                </StackLayout>
+
+            </ContentPage>
+        </x:Arguments>
+    </NavigationPage>
+
+
+</BB:BottomBarPage>

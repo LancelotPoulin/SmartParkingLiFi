@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:SPL="clr-namespace:SmartParkingLiFi"
+             xmlns:CC="clr-namespace:SmartParkingLiFi.CustomControls"
+             xmlns:IC="clr-namespace:ImageCircle.Forms.Plugin.Abstractions;assembly=ImageCircle.Forms.Plugin.Abstractions"
+             x:Class="SmartParkingLiFi.LogInPage"
+             NavigationPage.HasNavigationBar="False"
+             Appearing="ContentPage_Appearing" BackgroundColor="{Binding Source={x:Static SPL:Graphics.MainColor}}" >
+
+    <Grid RowSpacing="10" ColumnSpacing="0" >
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="3*" />
+            <RowDefinition Height="2*" />
+            <RowDefinition Height="2*" />
+            <RowDefinition Height="50" />
+            <RowDefinition Height="50" />
+            <RowDefinition Height="50" />
+            <RowDefinition Height="3*" />
+            <RowDefinition Height="2*" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="8*" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+
+        <CC:VideoL Source="BGVideo.mp4" Loop="{Binding IsBGRunning}" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" Grid.RowSpan="10" />
+
+        <IC:CircleImage Grid.Row="1" Grid.Column="1" Source="icon.png" Aspect="AspectFit" HeightRequest="15" WidthRequest="15" />
+        <Label Grid.Row="1" Grid.RowSpan="2" Grid.Column="1"  Text="Smart Parking LiFi" FontSize="28" TextColor="White" VerticalOptions="End" HorizontalOptions="Center" />
+
+        <CC:EntryL x:Name="MailEntry" Grid.Row="4" Grid.Column="1" Placeholder="Adresse mail" Keyboard="Email" FontSize="18" TextColor="{Binding Source={x:Static SPL:Graphics.MainColor}}" HorizontalOptions="FillAndExpand" />
+        <Image Grid.Row="4" Grid.Column="1" Source="Mail.png" HorizontalOptions="Start" Margin="5" />
+        <CC:EntryL x:Name="PasswordEntry" IsPassword="True" Grid.Row="5" Grid.Column="1" Placeholder="Mot de passe" FontSize="18" TextColor="{Binding Source={x:Static SPL:Graphics.MainColor}}" HorizontalOptions="FillAndExpand" />
+        <Image Grid.Row="5" Grid.Column="1" Source="Password.png" HorizontalOptions="Start" Margin="5" />
+        <CC:ButtonL x:Name="LogInButton" Grid.Row="6" Grid.Column="1" Text="Se connecter" Clicked="LogInButton_Clicked" TextColor="White" FontSize="20" />
+        <Image Grid.Row="6" Grid.Column="1" Source="Connect.png" HorizontalOptions="Start" Margin="5" />
+
+        <CC:ButtonTransparent x:Name="LogInAsGuestButton" Grid.Row="7" Grid.Column="1" Text="Se connecter en invité !" Clicked="LogInAsGuestButton_Clicked" TextColor="White" FontSize="12" VerticalOptions="Start" HorizontalOptions="Center" />
+
+        <Label Grid.Row="8" Grid.Column="1" Text="En continuant, vous acceptez les Conditions de Service et la Politique de Confidentialité de Smart Parking LiFi." TextColor="LightGray" FontSize="10" VerticalOptions="End" HorizontalOptions="Center" HorizontalTextAlignment="Center" />
+
+    </Grid>
+
+</ContentPage>

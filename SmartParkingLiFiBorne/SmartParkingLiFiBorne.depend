@@ -1,0 +1,43 @@
+# depslib dependency file v1.0
+1528983031 source:/home/pi/POULIN/Projet LiFi/SmartParkingLiFiBorne/main.cpp
+	"main.h"
+
+1528983187 /home/pi/POULIN/Projet LiFi/SmartParkingLiFiBorne/main.h
+	<iostream>
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<sstream>
+	<wiringPi.h>
+	<cstdio>
+	<ctime>
+	<time.h>
+	<cppconn/driver.h>
+	<cppconn/exception.h>
+	<cppconn/resultset.h>
+	<cppconn/statement.h>
+	<unistd.h>
+	<fcntl.h>
+	<termios.h>
+
+1529055828 source:/home/pi/POULIN/ProjetLiFi/SmartParkingLiFiBorne/main.cpp
+	"main.h"
+
+1528983187 /home/pi/POULIN/ProjetLiFi/SmartParkingLiFiBorne/main.h
+	<iostream>
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<sstream>
+	<wiringPi.h>
+	<cstdio>
+	<ctime>
+	<time.h>
+	<cppconn/driver.h>
+	<cppconn/exception.h>
+	<cppconn/resultset.h>
+	<cppconn/statement.h>
+	<unistd.h>
+	<fcntl.h>
+	<termios.h>
+
