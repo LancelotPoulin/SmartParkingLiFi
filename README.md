@@ -6,9 +6,9 @@ A Xamarin mobile application which allow the customer to reserve and access to t
 
 Xamarin application is the SmartParkingLiFi folder and the Code::Blocks C++ console app (access point) is the SmartParkingLiFiBorne folder.
 
-Most interesting part is the region "LiFi" in TabbedMainPage.cs where you will find methods to receive Li-Fi Data using Oledcomm receiver connected with micro-USB to the Android smartphone. I use a Serial USB manager to get data from it. To send data I use flashlight (I put it ON for 100ms to send "1", 200ms for "2" etc) and the C++ console app use a LDR (photoresistor) and a capacitor to detect the time the flashlight is ON. To send Li-Fi data, the Oledcomm module and LED light are connected to the UART ports (TX/RX) of the Raspberry.
+The most interesting part is the region "LiFi" in TabbedMainPage.cs where you will find methods to receive Li-Fi Data using Oledcomm receiver connected with micro-USB to the Android smartphone. I use a Serial USB manager to get data from it. To send data I use the flashlight (I put it ON for 100ms to send "1", 200ms for "2" etc). And the C++ console app (access point) use a LDR (photoresistor) and a capacitor to detect the time the flashlight is ON. To send Li-Fi data, the Oledcomm module and LED light are connected to the UART ports (TX/RX) of the Raspberry.
 
-In some case it's like a bidirectionnal light data transmission.
+Somehow it's like a bidirectionnal light data transmission between a smartphone and a computer (Raspberry). (flashlight to LDR is not "Li-Fi", Oledcomm module is Li-Fi, the difficult part is how to use it with a smartphone, and I succeeded !)
 
 I think you should create new project and copy my files to avoid bugs of visual studio and xamarin.
 To use the code, you need to install some NuGet packages corresponding to unfindables "using" directives like "LusoVU.XamarinUsbSerialForAndroid.0.2.3" or "Plugin.CurrentActivity.1.0.1" etc...
